@@ -5,26 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disini Cuy</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
-     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
 </head>
 
 <body>
-    <header>
-        <nav class="flex item-center justify-between p-6">
-            <h1 class="text-xl font-semibold">Disini Cuy</h1>
-            <div class="flex gap-4">
-                <a href="/VSGA" class="cursor-pointer">Home</a>
-                <a href="/VSGA/pesan.php" class="cursor-pointer">Pesan</a>
-                <a href="/VSGA/daftar-pesanan.php" class="cursor-pointer">Daftar Pesanan</a>
-            </div>
-        </nav>
 
-
-        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <?php include "layout/header.html" ?>
+    
+    <div id="default-carousel" class="relative w-full" data-carousel="slide">
             <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+            <div class="relative h-56 overflow-hidden md:h-96">
                 <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
                     <img src="https://images.unsplash.com/photo-1653832920019-db280240dd41?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
@@ -72,18 +64,15 @@
                 </span>
             </button>
         </div>
-    </header>
-
-
-    <main class="p-6 flex flex-col md:flex-row justify-between gap-2">
-        <div class="flex gap-6 flex-wrap">
+    <main class="p-6 flex flex-col justify-between md:flex-row gap-6">
+        <div class="flex gap-6 w-full h-fit">
             <div class="md:max-w-sm bg-white border border-gray-200 rounded-lg  shadow dark:bg-blue-800 dark:border-gray-700">
                 <a href="#">
                     <img class="rounded-t-lg" src="https://images.unsplash.com/photo-1718086436850-ac77db40dadb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Raja Ampat</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                     <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -100,7 +89,7 @@
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pulau Komodo</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                     <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -117,7 +106,7 @@
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pulau Seribu</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                     <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -128,13 +117,23 @@
                     </a>
                 </div>
             </div>
-            
+
         </div>
 
-        <div class="flex flex-col gap-4 h-96">
 
-            <iframe class="rounded-lg w-96" width="100%" height="100%" src="https://www.youtube.com/embed/ojQbArbuN4E?si=HaOU8Msl8Wys0rui" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="rounded-lg w-96" width="100%" height="100%" src="https://www.youtube.com/embed/ojQbArbuN4E?si=HaOU8Msl8Wys0rui" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="flex flex-col gap-4 md:w-1/2 h-full">
+            <div class="flex flex-col bg-blue-700 text-zinc-50 ">
+                <h4 class="p-2 text-center">Paket 1</h4>
+                <div class="w-full h-auto max-w-full  border border-gray-200 rounded-lg dark:border-gray-700">
+                    <iframe class="rounded-lg w-full h-72" src="https://www.youtube.com/embed/ojQbArbuN4E?si=HaOU8Msl8Wys0rui" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="flex flex-col bg-blue-700 text-zinc-50 ">
+                <h4 class="p-2 text-center">Paket 2</h4>
+                <div class="w-full h-auto max-w-full  border border-gray-200 rounded-lg dark:border-gray-700">
+                    <iframe class="rounded-lg w-full h-72" src="https://www.youtube.com/embed/ojQbArbuN4E?si=HaOU8Msl8Wys0rui" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
     </main>
 
