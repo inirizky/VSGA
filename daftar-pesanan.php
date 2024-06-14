@@ -39,17 +39,18 @@ if ($result->num_rows > 0) {
   <?php include "layout/header.html" ?>
 
 
-  <main class="p-6 flex flex-col md:flex-row justify-between gap-2">
-
-    <div class="relative flex flex-col gap-2 overflow-x-auto w-full mx-auto">
-      <div class="flex items-center justify-between">
+  <main class="p-6 flex flex-col  justify-between gap-2">
+  <div class="flex items-center justify-between">
         <h2 class="">Daftar Pesanan</h2>
         <div class="flex gap-2">
           <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('print')">Print</button>
           <!-- <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('pdf')">Save as PDF</button> -->
           <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('csv')">Save as CSV</button>
         </div>
-      </div>
+        </div>
+    <div class="relative flex flex-col gap-2 overflow-x-auto w-full mx-auto">
+     
+    
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -121,7 +122,7 @@ if ($result->num_rows > 0) {
                 <?= $row['total_price']; ?>
               </td>
               <td class=" py-4 flex gap-4">
-                <a href="pesan.php?id=<?= $row['id']; ?>" class="bg-blue-700 text-white py-2 px-4 rounded-md">Update</a>
+                <a href="update.php?id=<?= $row['id']; ?>" class="bg-blue-700 text-white py-2 px-4 rounded-md">Update</a>
                 <a href="delete.php?id=<?= $row['id']; ?>" class="bg-red-700 text-white py-2 px-4 rounded-md">Delete</a>
               </td>
             </tr>

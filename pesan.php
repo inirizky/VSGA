@@ -1,30 +1,5 @@
 <?php
 include "service/db.php";
-if (!isset($_GET['id'])) {
-  if (isset($_POST["pesan"])) {
-    $nama = $_POST["nama"];
-    $nohp = $_POST["nohp"];
-    $tanggal_pemesanan = $_POST["tanggal-pemesanan"];
-    $durasi_pemesanan = $_POST["durasi-pemesanan"];
-    $jumlah_pemesan = $_POST["jumlah-pemesan"];
-    $penginapan = isset($_POST['penginapan']) ? 1 : 0;
-    $transportasi = isset($_POST['transportasi']) ? 1 : 0;
-    $makanan = isset($_POST['makanan']) ? 1 : 0;
-    $harga_paket = $_POST["harga-paket"];
-    $jumlah_tagihan = $_POST["jumlah-tagihan"];
-
-    $hasil = $durasi_pemesanan * $jumlah_pemesan * $harga_paket;
-
-    $sql = "INSERT INTO tb_tiket (name, phone_number, booking_date, duration ,number_of_people, isHotel, isTransport, isCatering, packet_price, total_price) VALUES
-    ('$nama', '$nohp', '$tanggal_pemesanan' , '$durasi_pemesanan', '$jumlah_pemesan', '$penginapan', '$transportasi', '$makanan', '$harga_paket', '$hasil')";
-
-    if ($db->query($sql)) {
-      header('Location: daftar-pesanan.php');
-    } else {
-      echo "Data Gagal";
-    }
-  };
-} else {
 
   if (isset($_POST["pesan"])) {
     $nama = $_POST["nama"];
@@ -40,14 +15,19 @@ if (!isset($_GET['id'])) {
 
     $hasil = $durasi_pemesanan * $jumlah_pemesan * $harga_paket;
 
-    $sql = "UPDATE tb_tiket SET name= '$nama', phone_number = '$nohp' , booking_date = '$tanggal_pemesanan', duration = '$durasi_pemesanan',number_of_people =  '$jumlah_pemesan', isHotel = '$penginapan', isTransport = '$transportasi', isCatering = '$makanan', packet_price = '$harga_paket', total_price = '$jumlah_tagihan' WHERE id $id";
+  
+    $sql = "INSERT INTO tb_tiket (name, phone_number, booking_date, duration, number_of_people, isHotel, isTransport, isCatering, packet_price, total_price) 
+              VALUES ('$nama', '$nohp', '$tanggal_pemesanan', '$durasi_pemesanan', '$jumlah_pemesan', '$penginapan', '$transportasi', '$makanan', '$harga_paket', '$hasil')";
+  
+
     if ($db->query($sql)) {
       header('Location: daftar-pesanan.php');
     } else {
       echo "Data Gagal";
     }
-  };
-};
+  } else {
+    echo "Kamu iseng";
+  }
 
 
 
@@ -162,8 +142,10 @@ if (isset($_GET['id'])) {
           <input type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class=" rounded-r-lg bg-gray-200 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
       </div>
-      <div class="flex items-start mb-5">
-        <button type="submit" name="pesan" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pesan</button>
+      <div class="flex items-start mb-5 gap-2">
+        <!-- <button type="submit" name="pesan" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-red-800">Pesan</button> -->
+        <button type="submit" name="reset" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Reset</button>
+        <button type="submit" name="pesan" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Pesan</button>
     </form>
 
   </main>
