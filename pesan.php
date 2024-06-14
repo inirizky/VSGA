@@ -25,9 +25,7 @@ include "service/db.php";
     } else {
       echo "Data Gagal";
     }
-  } else {
-    echo "Kamu iseng";
-  }
+  } 
 
 
 
@@ -59,27 +57,27 @@ if (isset($_GET['id'])) {
 
 
   <main class="p-6 flex flex-col md:flex-row justify-between gap-2">
-    <form class="w-full max-w-2xl mx-auto" action="pesan.php" method="POST">
+  <form class="w-full max-w-2xl mx-auto" id="booking-form" action="pesan.php" method="POST">
       <div class="flex gap-4">
         <div class="mb-5 w-full">
           <label for="nama" class="block mb-2 w-full text-sm font-medium text-gray-900">Nama Pemesan</label>
-          <input type="text" name="nama" value="<?= isset($data['name']) ? $data['name'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+          <input type="text" name="nama" value="<?= isset($data['name']) ? $data['name'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
         </div>
         <div class="mb-5 w-full">
           <label for="nohp" class="block mb-2 w-full text-sm font-medium text-gray-900">No HP / Telp</label>
-          <input type="number" name="nohp" value="<?= isset($data['phone_number']) ? $data['phone_number'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+          <input type="number" name="nohp" value="<?= isset($data['phone_number']) ? $data['phone_number'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required/>
         </div>
       </div>
       <div class="flex gap-4">
         <div class="mb-5 w-full">
           <label for="tanggal-pemesanan" class="block mb-2 w-full text-sm font-medium text-gray-900">Tanggal
             Pemesanan</label>
-          <input type="date" name="tanggal-pemesanan" value="<?= isset($data['booking_date']) ? $data['booking_date'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+          <input type="date" name="tanggal-pemesanan" value="<?= isset($data['booking_date']) ? $data['booking_date'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required/>
         </div>
         <div class="mb-5 w-full">
           <label for="durasi-pemesanan" class="block mb-2 text-sm font-medium text-gray-900 ">Durasi Pemesanan</label>
           <div class="flex">
-            <input type="text" id="durasi-pemesanan" name="durasi-pemesanan" value="<?= isset($data['duration']) ? $data['duration'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <input type="text" id="durasi-pemesanan" name="durasi-pemesanan" value="<?= isset($data['duration']) ? $data['duration'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-r-lg border-gray-300 ">
               hari
             </span>
@@ -91,7 +89,7 @@ if (isset($_GET['id'])) {
       <div class="mb-5">
         <label for="jumlah-pemesan" class="block mb-2 text-sm font-medium text-gray-900 ">Jumlah Pemesan</label>
         <div class="flex">
-          <input type="text" id="jumlah-pemesan" name="jumlah-pemesan" value="<?= isset($data['number_of_people']) ? $data['number_of_people'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" id="jumlah-pemesan" name="jumlah-pemesan" value="<?= isset($data['number_of_people']) ? $data['number_of_people'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
           <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-r-lg border-gray-300 ">
             orang
           </span>
@@ -102,7 +100,7 @@ if (isset($_GET['id'])) {
         <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:border-gray-600">
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
             <div class="flex items-center ps-3">
-              <input id="penginapan" name="penginapan" type="checkbox" value="1000000" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"  <?= isset($data['isHotel']) && $data['isHotel'] ? 'checked' : '' ?> onchange="hitungPaket()">
+              <input id="penginapan" name="penginapan" type="checkbox" value="1000000" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"   <?= isset($data['isHotel']) && $data['isHotel'] ? 'checked' : '' ?> onchange="hitungPaket()">
               <label for="penginapan" class="w-full py-3 ms-2 text-sm font-medium text-gray-900">Penginapan
                 (Rp1.000.000)</label>
             </div>
@@ -130,7 +128,7 @@ if (isset($_GET['id'])) {
           <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-lg border-gray-300">
             Rp
           </span>
-          <input type="text" name="harga-paket" id="harga-paket" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" name="harga-paket" id="harga-paket" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
       </div>
       <div class="mb-5">
@@ -139,14 +137,23 @@ if (isset($_GET['id'])) {
           <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-lg border-gray-300 ">
             Rp
           </span>
-          <input type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class=" rounded-r-lg bg-gray-200 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class=" rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
       </div>
       <div class="flex items-start mb-5 gap-2">
         <!-- <button type="submit" name="pesan" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-red-800">Pesan</button> -->
-        <button type="submit" name="reset" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Reset</button>
-        <button type="submit" name="pesan" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Pesan</button>
+        <!-- <button type="submit" name="reset" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Reset</button> -->
+        <button type="submit" name="pesan" id="btn-pesan" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Pesan</button>
     </form>
+
+      <!-- Modal -->
+      <div id="error-modal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-50">
+            <div class="bg-white rounded-lg shadow p-6 w-1/3">
+                <h2 class="text-xl font-semibold mb-4">Error</h2>
+                <p class="mb-4">Harap isi semua field yang diperlukan.</p>
+                <button id="close-modal" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">Tutup</button>
+            </div>
+        </div>
 
   </main>
 
@@ -176,6 +183,33 @@ if (isset($_GET['id'])) {
 
 
     };
+
+
+    document.getElementById('btn-pesan').addEventListener('click', function() {
+            const form = document.getElementById('booking-form');
+
+            const inputs = form.querySelectorAll('input[required]');
+            // State
+            let isValid = true;
+
+            //Mengecek setiap input jika tidak ada value maka isValid manjadi false
+            inputs.forEach((input) => {
+                if (!input.value) {
+                    isValid = false;
+                }
+            });
+
+            //Jalankan pengecekkan jika tidak sama dengan isValid atau isValid = false maka tampilkan error modal, jika tidak submit ke database.
+            if (!isValid) {
+                document.getElementById('error-modal').classList.remove('hidden');
+            } else {
+                form.submit();
+            }
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('error-modal').classList.add('hidden');
+        });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   <!-- <script src="js/bootstrap.js"></script> -->
