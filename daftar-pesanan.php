@@ -34,6 +34,8 @@ $jsonData = json_encode($data);
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
   <script src="	https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
 </head>
 
 <body>
@@ -42,93 +44,93 @@ $jsonData = json_encode($data);
 
   <main class="p-6 flex flex-col  justify-between gap-2">
     <div class="flex items-center justify-between">
-      <h2 class="">Daftar Pesanan</h2>
+      <h2 class="text-xl font-semibold">Daftar Pesanan</h2>
       <div class="flex gap-2">
         <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('print')">Print</button>
         <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportPdf(data)">Save as PDF</button>
+        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportXls(data)">Save as XLS</button>
         <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('csv')">Save as CSV</button>
       </div>
     </div>
-    <div class="relative flex flex-col gap-2 overflow-x-auto w-full mx-auto">
+    <div class="relative flex flex-col gap-2 w-full overflow-x-auto mx-auto">
 
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="table">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-
-            <th scope="col" class="px-6 py-3">
-              Nama Pemesan
+    <table class="w-full text-sm text-left rtl:text-right    text-gray-500 dark:text-gray-400" id="table">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Nama Pemesan
             </th>
-            <th scope="col" class="px-6 py-3">
-              No Telp
+            <th scope="col" class="px-6 py-3 md:w-24">
+                No Telp
             </th>
-            <th scope="col" class="px-6 py-3">
-              Tanggal Pemesanan
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Tanggal Pemesanan
             </th>
-            <th scope="col" class="px-6 py-3">
-              Durasi Pemesanan
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Durasi Pemesanan
             </th>
-            <th scope="col" class="px-6 py-3">
-              Jumlah Pemesanan
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Jumlah Pemesanan
             </th>
-            <th scope="col" class="px-6 py-3">
-              Paket Perjalanan
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Paket Perjalanan
             </th>
-            <th scope="col" class="px-6 py-3">
-              Harga Paket
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Harga Paket
             </th>
-            <th scope="col" class="px-6 py-3">
-              Jumlah Tagihan
+            <th scope="col" class="px-6 py-3 md:w-24 w-72">
+                Jumlah Tagihan
             </th>
-            <th scope="col" class="px-6 py-3">
-              Action
+            <th scope="col" class="px-6 py-3 md:w-24">
+                Action
             </th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($data as $row) : ?>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($data as $row) : ?>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <?= $row['name']; ?>
-              </th>
-              <td class="px-6 py-4">
+            </th>
+            <td class="px-6 py-4">
                 <?= $row['phone_number']; ?>
-              </td>
-              <td class="px-6 py-4">
+            </td>
+            <td class="px-6 py-4 ">
                 <?= $row['booking_date']; ?>
-              </td>
-              <td class="px-6 py-4">
+            </td>
+            <td class="px-6 py-4">
                 <?= $row['duration']; ?> Hari
-              </td>
-              <td class="px-6 py-4">
+            </td>
+            <td class="px-6 py-4">
                 <?= $row['number_of_people']; ?> Orang
-              </td>
-              <td class="py-4 flex gap-4">
+            </td>
+            <td class="py-4 flex gap-2 md:w-64">
                 <?php if ($row['isHotel'] == 1) : ?>
-                  <span class="bg-green-700 text-white p-2 rounded-md">Penginapan</span>
+                <span class="bg-sky-800  text-zinc-50 p-1 font-semibold rounded-md">Penginapan</span>
                 <?php endif; ?>
                 <?php if ($row['isTransport'] == 1) : ?>
-                  <span class="bg-green-700 text-white p-2 rounded-md">Transportasi</span>
+                <span class="bg-green-800 text-zinc-50 p-1 font-semibold rounded-md">Transportasi</span>
                 <?php endif; ?>
                 <?php if ($row['isCatering'] == 1) : ?>
-                  <span class="bg-green-700 text-white p-2 rounded-md">Makanan</span>
+                <span class="bg-orange-800 text-zinc-50 p-1 font-semibold rounded-md">Makanan</span>
                 <?php endif; ?>
-              </td>
-              <td class="px-6 py-4">
+            </td>
+            <td class="px-6 py-4 md:w-32">
                 Rp
                 <?= $row['packet_price']; ?>
-              </td>
-              <td class="px-6 py-4">
+            </td>
+            <td class="px-6 py-4 md:w-36 ">
                 Rp
                 <?= $row['total_price']; ?>
-              </td>
-              <td class=" py-4 flex gap-4">
+            </td>
+            <td class="py-4 flex gap-4 md:w-44 w-52">
                 <a href="update.php?id=<?= $row['id']; ?>" class="bg-blue-700 text-white py-2 px-4 rounded-md">Update</a>
                 <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="cursor-pointer bg-red-700 text-white py-2 px-4 rounded-md">Delete</a>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
     </div>
 
     <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -156,6 +158,11 @@ $jsonData = json_encode($data);
   </main>
   <script>
     var data = <?php echo $jsonData; ?>;
+
+    function formatRupiah(value) {
+      return 'Rp ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+   }
+
    function exportPdf(data) {
     // console.log(data);
     var pdf = new jsPDF();
@@ -169,34 +176,64 @@ $jsonData = json_encode($data);
       "Durasi Pemesanan": row.duration + " Hari",
       "Jumlah Pemesanan": row.number_of_people + " Orang",
       "Paket Perjalanan": formatPaket(row), // Fungsi untuk memformat kolom 'Paket Perjalanan'
-      "Harga Paket": "Rp " + row.packet_price,
-      "Jumlah Tagihan": "Rp " + row.total_price
+      "Harga Paket": formatRupiah(row.packet_price),
+      "Jumlah Tagihan": formatRupiah(row.total_price),
     }));
     
-    console.log(tableData);
+    // console.log(tableData);
   pdf.autoTable({
-    head: [['Nama Pemesan', 'No Telp', 'Tanggal Pemesanan', 'Durasi Pemesanan', 'Jumlah Pemesanan', 'Paket Perjalanan', 'Harga Paket', 'Jumlah Tagihan']],
-    body: tableData.map(Object.values) // Ubah objek menjadi array nilai
+    head: [['Nama', 'No Telp', 'Tanggal Pemesanan', 'Durasi', 'Jumlah Pemesan', 'Paket Perjalanan', 'Harga Paket', 'Jumlah Tagihan']],
+    body: tableData.map(Object.values), // Ubah objek menjadi array nilai
+  styles: { cellPadding: 1, fontSize: 7 },
   });
 
   window.open(URL.createObjectURL(pdf.output("blob")));
 }
 
+
+
 // Fungsi untuk memformat kolom 'Paket Perjalanan'
-function formatPaket(row) {
-  var paket = [];
-  if (row.isHotel == 1) {
-    paket.push("Penginapan");
+  function formatPaket(row) {
+    var paket = [];
+    if (row.isHotel == 1) {
+      paket.push("Penginapan");
+    }
+    if (row.isTransport == 1) {
+      paket.push("Transportasi");
+    }
+    if (row.isCatering == 1) {
+      paket.push("Makanan");
+    }
+    return paket.join(", ");
   }
-  if (row.isTransport == 1) {
-    paket.push("Transportasi");
+
+
+  function exportXls(data) {
+    var tableData = data.map(row => ({
+      "Nama Pemesan": row.name, 
+      "No Telp": row.phone_number,
+      "Tanggal Pemesanan": row.booking_date,
+      "Durasi Pemesanan": row.duration + " Hari",
+      "Jumlah Pemesanan": row.number_of_people + " Orang",
+      "Paket Perjalanan": formatPaket(row),
+      "Harga Paket": formatRupiah(row.packet_price),
+      "Jumlah Tagihan": formatRupiah(row.total_price),
+    }));
+
+    var ws = XLSX.utils.json_to_sheet(tableData);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Data Pemesanan");
+
+    XLSX.writeFile(wb, "data_pemesanan.xlsx");
   }
-  if (row.isCatering == 1) {
-    paket.push("Makanan");
-  }
-  return paket.join(", ");
-}
   </script>
+
+
+
+
+
+
+
   <script>
     function exportTable(type) {
       // Mendapatkan tabel yang ingin di-export

@@ -1,43 +1,4 @@
-<?php
-include "service/db.php";
 
-  if (isset($_POST["pesan"])) {
-    $nama = $_POST["nama"];
-    $nohp = $_POST["nohp"];
-    $tanggal_pemesanan = $_POST["tanggal-pemesanan"];
-    $durasi_pemesanan = $_POST["durasi-pemesanan"];
-    $jumlah_pemesan = $_POST["jumlah-pemesan"];
-    $penginapan = isset($_POST['penginapan']) ? 1 : 0;
-    $transportasi = isset($_POST['transportasi']) ? 1 : 0;
-    $makanan = isset($_POST['makanan']) ? 1 : 0;
-    $harga_paket = $_POST["harga-paket"];
-    $jumlah_tagihan = $_POST["jumlah-tagihan"];
-
-    $hasil = $durasi_pemesanan * $jumlah_pemesan * $harga_paket;
-
-  
-    $sql = "INSERT INTO tb_tiket (name, phone_number, booking_date, duration, number_of_people, isHotel, isTransport, isCatering, packet_price, total_price) 
-              VALUES ('$nama', '$nohp', '$tanggal_pemesanan', '$durasi_pemesanan', '$jumlah_pemesan', '$penginapan', '$transportasi', '$makanan', '$harga_paket', '$hasil')";
-  
-
-    if ($db->query($sql)) {
-      header('Location: daftar-pesanan.php');
-    } else {
-      echo "Data Gagal";
-    }
-  } 
-
-
-
-if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $sql = "SELECT * FROM tb_tiket WHERE id = $id";
-  $result = $db->query($sql);
-  $data = $result->fetch_assoc();
-} else {
-  // echo "ID tidak ditemukan.";
-};
-?>
 
 
 <!DOCTYPE html>
@@ -49,6 +10,7 @@ if (isset($_GET['id'])) {
   <title>Disini Cuy</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
 </head>
 
@@ -128,7 +90,7 @@ if (isset($_GET['id'])) {
           <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-lg border-gray-300">
             Rp
           </span>
-          <input type="text" name="harga-paket" id="harga-paket" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input required readonly type="text" name="harga-paket" id="harga-paket" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:border-gray-600 dark:placeholder-gray-400">
         </div>
       </div>
       <div class="mb-5">
@@ -137,7 +99,7 @@ if (isset($_GET['id'])) {
           <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-lg border-gray-300 ">
             Rp
           </span>
-          <input type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class=" rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input required readonly type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ">
         </div>
       </div>
       <div class="flex items-start mb-5 gap-2">
@@ -217,11 +179,69 @@ if (isset($_GET['id'])) {
 
 </html>
 
+<?php
+include "service/db.php";
 
-<!-- <?php
+  if (isset($_POST["pesan"])) {
+    $nama = $_POST["nama"];
+    $nohp = $_POST["nohp"];
+    $tanggal_pemesanan = $_POST["tanggal-pemesanan"];
+    $durasi_pemesanan = $_POST["durasi-pemesanan"];
+    $jumlah_pemesan = $_POST["jumlah-pemesan"];
+    $penginapan = isset($_POST['penginapan']) ? 1 : 0;
+    $transportasi = isset($_POST['transportasi']) ? 1 : 0;
+    $makanan = isset($_POST['makanan']) ? 1 : 0;
+    $harga_paket = $_POST["harga-paket"];
+    $jumlah_tagihan = $_POST["jumlah-tagihan"];
 
-      // $nama = 'Rizky Imut';
+    if(!$durasi_pemesanan && !$jumlah_pemesan && !$harga_paket){
+      
+      echo "
+            <script> 
+            Swal.fire({
+              title: 'Gagal!',
+              text: 'Gagal input data pemesanan!',
+              icon: 'error',
+              showCancelButton: true,
+              cancelButtonText: 'Kembali'
+            }).then(() => {
+                window.location = 'pesan.php';
+            });
+            </script>";
+            return;
+    } 
 
-      // echo $nama;
+    $hasil = $durasi_pemesanan * $jumlah_pemesan * $harga_paket;
+      
 
-      ?> -->
+    $sql = "INSERT INTO tb_tiket (name, phone_number, booking_date, duration, number_of_people, isHotel, isTransport, isCatering, packet_price, total_price) 
+                VALUES ('$nama', '$nohp', '$tanggal_pemesanan', '$durasi_pemesanan', '$jumlah_pemesan', '$penginapan', '$transportasi', '$makanan', '$harga_paket', '$hasil')";  
+   
+  if ($db->query($sql)) {
+    echo "
+          <script>
+            Swal.fire({
+              title: 'Sukses!',
+              text: 'Berhasil input data pemesanan!',
+              icon: 'success',
+              timer: 1500,
+            }).then(() => {
+                window.location = 'daftar-pesanan.php';
+            });
+          </script>";
+  } else {
+    echo "
+            <script> 
+            Swal.fire({
+              title: 'Gagal!',
+              text: 'Gagal input data pemesanan!',
+              icon: 'error',
+              showCancelButton: true,
+              cancelButtonText: 'Kembali'
+            }).then(() => {
+                window.location = 'pesan.php';
+            });
+            </script>";
+  }
+  } 
+?>
