@@ -184,11 +184,3 @@
 
 </html>
 
-
-<!-- <?php
-
-        // $nama = 'Rizky Imut';
-
-        // echo $nama;
-
-        ?> -->

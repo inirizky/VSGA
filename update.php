@@ -9,43 +9,11 @@ if ($id) {
     $result = $db->query($sql);
     $data = $result->fetch_assoc();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nama = $_POST['nama'];
-        $nohp = $_POST['nohp'];
-        $tanggal_pemesanan = $_POST['tanggal-pemesanan'];
-        $durasi_pemesanan = $_POST['durasi-pemesanan'];
-        $jumlah_pemesan = $_POST['jumlah-pemesan'];
-        $isHotel = isset($_POST['penginapan']) ? 1 : 0;
-        $isTransport = isset($_POST['transportasi']) ? 1 : 0;
-        $isFood = isset($_POST['makanan']) ? 1 : 0;
-        $harga_paket = $_POST['harga-paket'];
-        $jumlah_tagihan = $_POST['jumlah-tagihan'];
-
-        $sql = "UPDATE tb_tiket SET 
-                name = '$nama', 
-                phone_number = '$nohp', 
-                booking_date = '$tanggal_pemesanan', 
-                duration = '$durasi_pemesanan', 
-                number_of_people = '$jumlah_pemesan', 
-                isHotel = '$isHotel', 
-                isTransport = '$isTransport', 
-                isCatering = '$isFood', 
-                packet_price = '$harga_paket', 
-                total_price = '$jumlah_tagihan' 
-                WHERE id = $id";
-
-        if ($db->query($sql) === TRUE) {
-            header('Location: daftar-pesanan.php');
-        } else {
-            echo "Data Gagal";
-        }
-    }
 } else {
     echo "ID tidak ditemukan.";
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,6 +23,7 @@ if ($id) {
   <title>Disini Cuy</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -170,3 +139,51 @@ if ($id) {
 </body>
 
 </html>
+<?php
+include "service/db.php";
+
+$id = $_GET['id'] ?? null;
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nama = $_POST['nama'];
+        $nohp = $_POST['nohp'];
+        $tanggal_pemesanan = $_POST['tanggal-pemesanan'];
+        $durasi_pemesanan = $_POST['durasi-pemesanan'];
+        $jumlah_pemesan = $_POST['jumlah-pemesan'];
+        $isHotel = isset($_POST['penginapan']) ? 1 : 0;
+        $isTransport = isset($_POST['transportasi']) ? 1 : 0;
+        $isFood = isset($_POST['makanan']) ? 1 : 0;
+        $harga_paket = $_POST['harga-paket'];
+        $jumlah_tagihan = $_POST['jumlah-tagihan'];
+
+        $sql = "UPDATE tb_tiket SET 
+                name = '$nama', 
+                phone_number = '$nohp', 
+                booking_date = '$tanggal_pemesanan', 
+                duration = '$durasi_pemesanan', 
+                number_of_people = '$jumlah_pemesan', 
+                isHotel = '$isHotel', 
+                isTransport = '$isTransport', 
+                isCatering = '$isFood', 
+                packet_price = '$harga_paket', 
+                total_price = '$jumlah_tagihan' 
+                WHERE id = $id";
+
+        if ($db->query($sql) === TRUE) {
+          echo "
+          <script>
+            Swal.fire({
+              title: 'Sukses!',
+              text: 'Berhasil input data pemesanan!',
+              icon: 'success',
+              timer: 1500,
+            }).then(() => {
+                window.location = 'daftar-pesanan.php';
+            });
+          </script>";
+        } else {
+            echo "Data Gagal";
+        }
+    }
+
+?>

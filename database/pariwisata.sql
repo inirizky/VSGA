@@ -46,9 +46,9 @@ CREATE TABLE `tb_tiket` (
 --
 
 INSERT INTO `tb_tiket` (`id`, `name`, `phone_number`, `booking_date`, `duration`, `number_of_people`, `isHotel`, `isTransport`, `isCatering`, `packet_price`, `total_price`) VALUES
-(2, 'Yanto Kocul', '085155322142', '2024-06-14', 2, 4, 1, 1, 1, 1200000, 9600000),
-(3, 'Yanto Kocul', '085155322142', '2024-06-14', 2, 4, 0, 1, 0, 1200000, 9600000),
-(6, 'Yanto Mantap', '085155322142', '2024-06-14', 2, 4, 0, 1, 0, 1200000, 9600000);
+(2, 'Yanto Kocul', '085155232132', '2024-06-14', 2, 4, 1, 1, 1, 1200000, 9600000),
+(3, 'Yanto Kocul', '085155232132', '2024-06-14', 2, 4, 0, 1, 0, 1200000, 9600000),
+(6, 'Yanto Kocul', '085155232132', '2024-06-14', 2, 4, 0, 1, 0, 1200000, 9600000);
 
 --
 -- Indexes for dumped tables

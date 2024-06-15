@@ -44,17 +44,19 @@ $jsonData = json_encode($data);
 
   <main class="p-6 flex flex-col  justify-between gap-2">
     <div class="flex items-center justify-between">
-      <h2 class="text-xl font-semibold">Daftar Pesanan</h2>
+      <h2 class="text-2xl font-semibold">Daftar Pesanan</h2>
       <div class="flex gap-2">
         <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('print')">Print</button>
-        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportPdf(data)">Save as PDF</button>
-        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportXls(data)">Save as XLS</button>
-        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('csv')">Save as CSV</button>
+        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportPdf(data)">Export PDF</button>
+        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportXls(data)">Export Excel</button>
+        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="jsonExport(data)">Export JSON</button>
+        <button class="bg-gray-600 py-2 px-5 rounded-md text-gray-50" onclick="exportTable('csv')">Export CSV</button>
+      
       </div>
     </div>
     <div class="relative flex flex-col gap-2 w-full overflow-x-auto mx-auto">
 
-    <table class="w-full text-sm text-left rtl:text-right    text-gray-500 dark:text-gray-400" id="table">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="table">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
             <th scope="col" class="px-6 py-3 md:w-24">
@@ -166,7 +168,6 @@ $jsonData = json_encode($data);
    function exportPdf(data) {
     // console.log(data);
     var pdf = new jsPDF();
-    // pdf.text(20, 20, "Employee Details");
     
     // Mengatur data untuk tabel
     var tableData = data.map(row => ({
@@ -226,7 +227,31 @@ $jsonData = json_encode($data);
 
     XLSX.writeFile(wb, "data_pemesanan.xlsx");
   }
+
+
+   function jsonExport(data) {
+      
+    var tableData = data.map(row => ({
+      "Nama Pemesan": row.name, 
+      "No Telp": row.phone_number,
+      "Tanggal Pemesanan": row.booking_date,
+      "Durasi Pemesanan": row.duration + " Hari",
+      "Jumlah Pemesanan": row.number_of_people + " Orang",
+      "Paket Perjalanan": formatPaket(row),
+      "Harga Paket": formatRupiah(row.packet_price),
+      "Jumlah Tagihan": formatRupiah(row.total_price),
+    }));
+
+      const jsonContent = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tableData));
+      const link = document.createElement("a");
+      link.setAttribute("href", jsonContent);
+      link.setAttribute("download", "Daftar-Pesanan.json");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
   </script>
+
 
 
 
@@ -288,12 +313,3 @@ $jsonData = json_encode($data);
 </body>
 
 </html>
-
-
-<!-- <?php
-
-      // $nama = 'Rizky Imut';
-
-      // echo $nama;
-
-      ?> -->

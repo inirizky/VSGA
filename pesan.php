@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,23 +20,23 @@
       <div class="flex gap-4">
         <div class="mb-5 w-full">
           <label for="nama" class="block mb-2 w-full text-sm font-medium text-gray-900">Nama Pemesan</label>
-          <input type="text" name="nama" value="<?= isset($data['name']) ? $data['name'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+          <input type="text" name="nama" id="nama" value="<?= isset($data['name']) ? $data['name'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  />
         </div>
         <div class="mb-5 w-full">
           <label for="nohp" class="block mb-2 w-full text-sm font-medium text-gray-900">No HP / Telp</label>
-          <input type="number" name="nohp" value="<?= isset($data['phone_number']) ? $data['phone_number'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required/>
+          <input type="number" name="nohp" id="nohp" value="<?= isset($data['phone_number']) ? $data['phone_number'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
         </div>
       </div>
       <div class="flex gap-4">
         <div class="mb-5 w-full">
           <label for="tanggal-pemesanan" class="block mb-2 w-full text-sm font-medium text-gray-900">Tanggal
             Pemesanan</label>
-          <input type="date" name="tanggal-pemesanan" value="<?= isset($data['booking_date']) ? $data['booking_date'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required/>
+          <input type="date" name="tanggal-pemesanan" id="tanggal-pemesanan" value="<?= isset($data['booking_date']) ? $data['booking_date'] : '' ?>" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
         </div>
         <div class="mb-5 w-full">
           <label for="durasi-pemesanan" class="block mb-2 text-sm font-medium text-gray-900 ">Durasi Pemesanan</label>
           <div class="flex">
-            <input type="text" id="durasi-pemesanan" name="durasi-pemesanan" value="<?= isset($data['duration']) ? $data['duration'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            <input type="text" id="durasi-pemesanan" name="durasi-pemesanan" value="<?= isset($data['duration']) ? $data['duration'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-r-lg border-gray-300 ">
               hari
             </span>
@@ -51,7 +48,7 @@
       <div class="mb-5">
         <label for="jumlah-pemesan" class="block mb-2 text-sm font-medium text-gray-900 ">Jumlah Pemesan</label>
         <div class="flex">
-          <input type="text" id="jumlah-pemesan" name="jumlah-pemesan" value="<?= isset($data['number_of_people']) ? $data['number_of_people'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+          <input type="text" id="jumlah-pemesan" name="jumlah-pemesan" value="<?= isset($data['number_of_people']) ? $data['number_of_people'] : '' ?>" class=" rounded-l-lg bg-gray-50 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" >
           <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-r-lg border-gray-300 ">
             orang
           </span>
@@ -90,7 +87,7 @@
           <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-lg border-gray-300">
             Rp
           </span>
-          <input required readonly type="text" name="harga-paket" id="harga-paket" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:border-gray-600 dark:placeholder-gray-400">
+          <input  readonly type="text" name="harga-paket" id="harga-paket" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:border-gray-600 dark:placeholder-gray-400">
         </div>
       </div>
       <div class="mb-5">
@@ -99,13 +96,13 @@
           <span class="inline-flex  items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-lg border-gray-300 ">
             Rp
           </span>
-          <input required readonly type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ">
+          <input  readonly type="text" name="jumlah-tagihan" id="jumlah-tagihan" value="<?= isset($data['packet_price']) ? $data['packet_price'] : '' ?>" class="rounded-r-lg bg-gray-200 border text-gray-900 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ">
         </div>
       </div>
       <div class="flex items-start mb-5 gap-2">
         <!-- <button type="submit" name="pesan" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-red-800">Pesan</button> -->
         <!-- <button type="submit" name="reset" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Reset</button> -->
-        <button type="submit" name="pesan" id="btn-pesan" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Pesan</button>
+        <button type="button" name="pesan" id="pesan-button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800">Pesan</button>
     </form>
 
       <!-- Modal -->
@@ -146,32 +143,54 @@
 
     };
 
+    document.getElementById('pesan-button').addEventListener('click', function() {
 
-    document.getElementById('btn-pesan').addEventListener('click', function() {
-            const form = document.getElementById('booking-form');
+      const nama = document.getElementById('nama').value;
+      const nohp = document.getElementById('nohp').value;
+      const tanggalPemesanan = document.getElementById('tanggal-pemesanan').value;
+      const durasiPemesanan = document.getElementById('durasi-pemesanan').value;
+      const jumlahPemesan = document.getElementById('jumlah-pemesan').value;
+      const hargaPaket = document.getElementById('harga-paket').value;
+      const jumlahTagihan = document.getElementById('jumlah-tagihan').value;
+      
 
-            const inputs = form.querySelectorAll('input[required]');
-            // State
-            let isValid = true;
+      const layanan = [];
+      if (document.getElementById('penginapan').checked) layanan.push('Penginapan');
+      if (document.getElementById('transportasi').checked) layanan.push('Transportasi');
+      if (document.getElementById('makanan').checked) layanan.push('Makanan');
 
-            //Mengecek setiap input jika tidak ada value maka isValid manjadi false
-            inputs.forEach((input) => {
-                if (!input.value) {
-                    isValid = false;
-                }
+      if(!(nama && nohp && tanggalPemesanan && durasiPemesanan && jumlahPemesan)){
+            Swal.fire({
+              title: 'Form belum terisi',
+              text: 'Semua input wajib di isi',
+              icon: 'error',
+              showCancelButton: true,
+              cancelButtonText: 'Kembali'
+            }).then(() => {
+                window.location = 'pesan.php';
             });
-
-            //Jalankan pengecekkan jika tidak sama dengan isValid atau isValid = false maka tampilkan error modal, jika tidak submit ke database.
-            if (!isValid) {
-                document.getElementById('error-modal').classList.remove('hidden');
-            } else {
-                form.submit();
-            }
-        });
-
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('error-modal').classList.add('hidden');
-        });
+        return;
+      }
+      
+      Swal.fire({
+        title: 'Konfirmasi Pesanan Anda',
+        html: `<p>Nama Pemesan: ${nama}</p>
+               <p>No HP: ${nohp}</p>
+               <p>Tanggal Pemesanan: ${tanggalPemesanan}</p>
+               <p>Durasi Pemesanan: ${durasiPemesanan} hari</p>
+               <p>Jumlah Pemesan: ${jumlahPemesan} orang</p>
+               <p>Layanan Paket Perjalanan: ${layanan.join(', ')}</p>
+               <p>Harga Paket: Rp${hargaPaket}</p>
+               <p>Jumlah Tagihan: Rp${jumlahTagihan}</p>`,
+        showCancelButton: true,
+        confirmButtonText: 'Pesan',
+        cancelButtonText: 'Batal',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById('booking-form').submit();
+        }
+      });
+    });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   <!-- <script src="js/bootstrap.js"></script> -->
@@ -182,7 +201,7 @@
 <?php
 include "service/db.php";
 
-  if (isset($_POST["pesan"])) {
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST["nama"];
     $nohp = $_POST["nohp"];
     $tanggal_pemesanan = $_POST["tanggal-pemesanan"];
@@ -194,13 +213,13 @@ include "service/db.php";
     $harga_paket = $_POST["harga-paket"];
     $jumlah_tagihan = $_POST["jumlah-tagihan"];
 
-    if(!$durasi_pemesanan && !$jumlah_pemesan && !$harga_paket){
+    if(!($nama && $tanggal_pemesanan && $durasi_pemesanan && $jumlah_pemesan && $harga_paket)){
       
       echo "
             <script> 
             Swal.fire({
-              title: 'Gagal!',
-              text: 'Gagal input data pemesanan!',
+              title: 'Form belum terisi',
+              text: 'Semua input wajib di isi',
               icon: 'error',
               showCancelButton: true,
               cancelButtonText: 'Kembali'
